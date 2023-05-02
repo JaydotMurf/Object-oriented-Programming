@@ -30,6 +30,7 @@ class Vehicle {
 let myFirstVehicle = new Vehicle('Honda', 'Monster Truck', 1999);
 console.log(myFirstVehicle.honk());
 console.log(myFirstVehicle.toString());
+console.log(typeof myFirstVehicle);
 
 // TODO: Part Two
 // TODO: Create a class for a car. The Car class should inherit from Vehicle and each car instance should have a property called numWheels which has a value of 4.
@@ -101,7 +102,21 @@ class Garage {
     this.capacity = capacity;
     this.vehicles = vehicles;
   }
+  add(automobile) {
+    if (typeof automobile !== 'object') {
+      return `Only vehicles are allowed in here!`;
+    }
+    if (this.vehicles.length == this.capacity) {
+      return `Sorry, we're full.`;
+    } else {
+      this.vehicles.push(automobile.make);
+      return `Vehicle added!`;
+    }
+  }
 }
 
 let garage = new Garage(2);
-console.log(garage.vehicles);
+console.log(garage.add(new Car('Hyundai', 'Elantra', 2015)));
+console.log(garage.add(new Motorcycle('Honda', 'Nighthawk', 2000)));
+console.log(garage.add(`Bicycle`));
+console.log(garage.add(new Car('Porshe', 'Cayenne', 2014)));
